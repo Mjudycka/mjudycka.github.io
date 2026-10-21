@@ -105,5 +105,15 @@
   </section>
 
   <footer>© 2026 Małgorzata Judycka</footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        entry.target.classlist.toggle("visible", entry.isIntersecting);
+      });
+    }, {treshold: 0.3 });
+
+    document.querySelectorAll(".panel").forEach((el) => observer.observe(el));
+  </script>
 </body>
 </html>
