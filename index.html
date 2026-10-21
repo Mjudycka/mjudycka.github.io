@@ -112,7 +112,7 @@
       entries.forEach((entry) => {
         entry.target.classList.toggle("visible", entry.isIntersecting);
       });
-    }, {treshold: 0.3 });
+    }, {threshold: 0.3 });
 
     document.querySelectorAll(".panel").forEach((el) => observer.observe(el));
   </script>
