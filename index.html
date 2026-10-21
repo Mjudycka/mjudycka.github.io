@@ -110,7 +110,7 @@
   <script>
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        entry.target.classlist.toggle("visible", entry.isIntersecting);
+        entry.target.classList.toggle("visible", entry.isIntersecting);
       });
     }, {treshold: 0.3 });
 
