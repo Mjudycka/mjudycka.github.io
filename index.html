@@ -66,6 +66,29 @@
       transition: transform 0.8s ease;
     }
 
+    .panel::before,
+    .panel::after {
+      content: "";
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      border: 0 solid #00b8ff;
+    }
+
+    .panel::before {
+      top: 14px;
+      left: 14px;
+      border-top-width: 5px;
+      border-left-width: 5px;
+    }
+
+    .panel::after {
+      bottom: 14px;
+      right: 14px;
+      border-bottom-width: 5px;
+      border-right-width: 5px;
+    }
+
     .panel.visible {
       opacity: 1;
       transform: translateX(0);
