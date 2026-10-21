@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imię Nazwisko – Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: "Segoe UI", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .roles span {
+      border: 1px solid #00e5ff;
+      color: #00e5ff;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-size: 1.1rem;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 16px;
+      left: 0;
+      right: 0;
+      font-size: 0.85rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Imię Nazwisko</h1>
+    <div class="roles">
+      <span>Software Engineer</span>
+      <span>Software Tester</span>
+      <span>Automation Tester</span>
+    </div>
+  </main>
+  <footer>© 2026 Imię Nazwisko</footer>
+</body>
+</html>
