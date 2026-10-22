@@ -407,6 +407,272 @@
       color: rgba(1, 31, 75, 0.55);
     }
 
+    /* ---------- KSIĄŻKA ---------- */
+    .book-wrap {
+      width: 100%;
+      max-width: 760px;
+      perspective: 1800px;
+    }
+
+    .book {
+      position: relative;
+      aspect-ratio: 3 / 2.1;
+      transform-style: preserve-3d;
+      /* zamknięta książka jest przesunięta, żeby okładka była na środku */
+      transform: translateX(-25%);
+      transition: transform 1.2s cubic-bezier(0.4, 0.2, 0.2, 1);
+      cursor: pointer;
+    }
+
+    .book.open {
+      transform: translateX(0);
+    }
+
+    /* wspólny wygląd kartki */
+    .page,
+    .cover-back {
+      padding: 44px 36px;
+      text-align: left;
+      color: rgba(1, 31, 75, 0.82);
+    }
+
+    .page {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      border-radius: 0 8px 8px 0;
+      /* cień przy grzbiecie */
+      background:
+        linear-gradient(to right, rgba(1, 31, 75, 0.14), transparent 12%),
+        #fffdf9;
+      box-shadow: 0 30px 60px -25px rgba(1, 31, 75, 0.35);
+    }
+
+    /* okładka: obraca się wokół grzbietu (lewej krawędzi) */
+    .cover {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50%;
+      height: 100%;
+      transform-origin: left center;
+      transform-style: preserve-3d;
+      transform: rotateY(0deg) translateZ(1px);
+      transition: transform 1.2s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+
+    .book.open .cover {
+      transform: rotateY(-180deg) translateZ(1px);
+    }
+
+    .cover-front,
+    .cover-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    /* przód okładki */
+    .cover-front {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      border-radius: 0 8px 8px 0;
+      color: #fff;
+      background:
+        radial-gradient(circle at 85% 10%, rgba(0, 184, 255, 0.2), transparent 45%),
+        linear-gradient(145deg, #02295f 0%, #011f4b 55%, #00122e 100%);
+      box-shadow:
+        inset 12px 0 14px -8px rgba(0, 0, 0, 0.45),
+        0 30px 60px -25px rgba(1, 31, 75, 0.5);
+    }
+
+    .cover-front::before,
+    .cover-front::after {
+      content: "";
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      border: 0 solid #00b8ff;
+    }
+
+    .cover-front::before {
+      top: 22px;
+      left: 28px;
+      border-top-width: 2px;
+      border-left-width: 2px;
+    }
+
+    .cover-front::after {
+      bottom: 22px;
+      right: 22px;
+      border-bottom-width: 2px;
+      border-right-width: 2px;
+    }
+
+    .cv-eyebrow {
+      font-size: 0.66rem;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: #00b8ff;
+    }
+
+    .cv-title {
+      margin: 14px 0 0;
+      font-size: clamp(2.4rem, 7vw, 4rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .cv-line {
+      width: 60px;
+      height: 2px;
+      margin: 22px 0;
+      background: linear-gradient(90deg, #00b8ff, #7c5cff, #ff8c69);
+    }
+
+    .cv-sub {
+      max-width: 22ch;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    /* lewa kartka = tył okładki, widoczny po otwarciu */
+    .cover-back {
+      transform: rotateY(180deg);
+      border-radius: 8px 0 0 8px;
+      background:
+        linear-gradient(to left, rgba(1, 31, 75, 0.14), transparent 12%),
+        #fffdf9;
+      box-shadow: 0 30px 60px -25px rgba(1, 31, 75, 0.35);
+    }
+
+    /* tekst na kartkach */
+    .page h3,
+    .cover-back h3 {
+      position: relative;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #011f4b;
+    }
+
+    .page h3::after,
+    .cover-back h3::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 36px;
+      height: 2px;
+      background: #00b8ff;
+    }
+
+    .page p,
+    .cover-back p {
+      font-size: 0.84rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    /* duża pierwsza litera jak w gazecie */
+    .cover-back .drop::first-letter {
+      float: left;
+      padding-right: 8px;
+      font-size: 3.1em;
+      font-weight: 700;
+      line-height: 0.85;
+      color: #011f4b;
+    }
+
+    .page .quote {
+      margin-top: 16px;
+      padding-left: 14px;
+      border-left: 2px solid #ff8c69;
+      font-style: italic;
+      font-weight: 500;
+      color: #011f4b;
+    }
+
+    .pg {
+      position: absolute;
+      bottom: 18px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      color: rgba(1, 31, 75, 0.4);
+    }
+
+    /* na węższych ekranach strony układają się jedna pod drugą, a okładka otwiera się w górę */
+    @media (max-width: 860px) {
+      .book {
+        aspect-ratio: auto;
+        height: 780px;
+        transform: translateY(-25%);
+      }
+
+      .book.open {
+        transform: none;
+      }
+
+      .page {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: auto;
+        width: 100%;
+        height: 50%;
+        padding: 30px 26px;
+        border-radius: 0 0 8px 8px;
+        background:
+          linear-gradient(to bottom, rgba(1, 31, 75, 0.14), transparent 8%),
+          #fffdf9;
+      }
+
+      .cover {
+        top: auto;
+        bottom: 0;
+        left: 0;
+        right: auto;
+        width: 100%;
+        height: 50%;
+        transform-origin: center top;
+        transform: rotateX(0deg) translateZ(1px);
+      }
+
+      .book.open .cover {
+        transform: rotateX(180deg) translateZ(1px);
+      }
+
+      .cover-front {
+        border-radius: 0 0 8px 8px;
+        box-shadow:
+          inset 0 12px 14px -8px rgba(0, 0, 0, 0.45),
+          0 30px 60px -25px rgba(1, 31, 75, 0.5);
+      }
+
+      .cover-back {
+        padding: 30px 26px;
+        transform: rotateX(180deg);
+        border-radius: 8px 8px 0 0;
+        background:
+          linear-gradient(to top, rgba(1, 31, 75, 0.14), transparent 8%),
+          #fffdf9;
+      }
+    }
+
     footer {
       padding: 24px;
       font-size: 0.85rem;
@@ -461,27 +727,60 @@
 
         <!-- TYŁ -->
         <div class="face back">
-          <p class="b-label">Education</p>
-          <p class="b-school">AMU</p>
-          <p class="b-meta">Cognitive Science · 2023 – 2026</p>
+          <p class="b-label">Wykształcenie</p>
+          <p class="b-school">Nazwa uczelni</p>
+          <p class="b-meta">Kierunek studiów · 2018 – 2022</p>
 
           <span class="divider"></span>
 
           <p class="b-label">Skills</p>
           <div class="skills">
+            <span>JavaScript</span>
             <span>Python</span>
             <span>Selenium</span>
-            <span>Pytest</span>
-            <span>API Testing</span>
+            <span>Cypress</span>
             <span>SQL</span>
             <span>Git</span>
-            <span>Jira</span>
-            <span>Power Platform</span>
           </div>
         </div>
 
       </div>
       <p class="hint">Kliknij, aby obrócić</p>
+    </div>
+  </section>
+
+  <section id="book">
+    <div class="book-wrap">
+      <div class="book" tabindex="0" role="button" aria-label="Otwórz lub zamknij książkę">
+
+        <!-- prawa kartka -->
+        <div class="page">
+          <h3>Jak nie zostać w tyle</h3>
+          <p>Nie chodzi o wyścig z maszyną, tylko o to, by ją wykorzystać. Najwięcej zyskuje ten, kto potrafi zadać dobre pytanie, sprawdzić wynik i wziąć za niego odpowiedzialność.</p>
+          <p>Dlatego uczę się codziennie: testuję nowe narzędzia, automatyzuję powtarzalne zadania i zostawiam sobie to, co wymaga myślenia.</p>
+          <p class="quote">Technologia idzie naprzód. Warto iść razem z nią.</p>
+          <span class="pg">— 2 —</span>
+        </div>
+
+        <!-- okładka (przód) i lewa kartka (tył okładki) -->
+        <div class="cover">
+          <div class="cover-front">
+            <p class="cv-eyebrow">Esej</p>
+            <h2 class="cv-title">Era AI</h2>
+            <span class="cv-line"></span>
+            <p class="cv-sub">Dostosuj się, zanim zostaniesz w tyle.</p>
+          </div>
+
+          <div class="cover-back">
+            <h3>Świat się zmienia</h3>
+            <p class="drop">Sztuczna inteligencja przestała być ciekawostką. Pisze kod, generuje testy i wyłapuje błędy szybciej, niż zdążymy wypić kawę. To nie chwilowa moda, tylko nowy sposób pracy, który już zmienia nasz zawód.</p>
+            <p>Kto to zignoruje, szybko zauważy, że pracuje wolniej niż inni, i to nie z powodu braku talentu.</p>
+            <span class="pg">— 1 —</span>
+          </div>
+        </div>
+
+      </div>
+      <p class="hint">Kliknij, aby otworzyć lub zamknąć</p>
     </div>
   </section>
 
@@ -520,6 +819,36 @@
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         toggleFlip();
+      }
+    });
+
+    // książka otwiera się, gdy sekcja wjedzie na ekran
+    const book = document.querySelector(".book");
+    let bookTimer;
+
+    new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        clearTimeout(bookTimer);
+
+        if (entry.isIntersecting) {
+          bookTimer = setTimeout(() => book.classList.add("open"), 600);
+        } else {
+          book.classList.remove("open");
+        }
+      });
+    }, { threshold: 0.4 }).observe(book.closest("section"));
+
+    // kliknięcie (lub Enter / spacja) otwiera i zamyka książkę ręcznie
+    function toggleBook() {
+      clearTimeout(bookTimer);
+      book.classList.toggle("open");
+    }
+
+    book.addEventListener("click", toggleBook);
+    book.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        toggleBook();
       }
     });
   </script>
