@@ -627,6 +627,15 @@
         transform: none;
       }
 
+      .book + .hint {
+        transform: translateY(-195px);
+        transition: transform 1.2s cubic-bezier(0.4, 0.2, 0.2, 1);
+      }
+
+      .book.open + .hint {
+        transform: none;
+      }
+
       .page {
         top: auto;
         bottom: 0;
